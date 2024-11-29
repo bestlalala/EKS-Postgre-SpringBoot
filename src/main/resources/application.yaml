@@ -4,8 +4,10 @@ spring:
     username: ${DB_USERNAME}                          # PostgreSQL 사용자명
     password: ${DB_PASSWORD}                          # PostgreSQL 비밀번호
     driver-class-name: org.postgresql.Driver          # PostgreSQL 드라이버 클래스
+    type: com.zaxxer.hikari.HikariDataSource
 
   jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update                                # 스키마 자동 업데이트 (create, update, validate, none 등 선택)
     properties:
