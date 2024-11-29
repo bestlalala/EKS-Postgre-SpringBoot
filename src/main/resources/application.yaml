@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    url: ${DB_URL}                                    # DB URL
+    username: ${DB_USERNAME}                          # PostgreSQL 사용자명
+    password: ${DB_PASSWORD}                          # PostgreSQL 비밀번호
+    driver-class-name: org.postgresql.Driver          # PostgreSQL 드라이버 클래스
+
+  jpa:
+    hibernate:
+      ddl-auto: update                                # 스키마 자동 업데이트 (create, update, validate, none 등 선택)
+    properties:
+      hibernate:
+        format_sql: true                              # SQL 포맷팅
+    show-sql: true                                    # 실행되는 SQL 출력
+
+# 로그 레벨 설정
+logging:
+  level:
+    org.springframework: INFO                        # Spring 관련 로그 레벨
+    org.hibernate.SQL: DEBUG                         # Hibernate SQL 로그 레벨
