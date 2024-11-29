@@ -1,8 +1,15 @@
-package com.bestlalala.backend;
+package com.bestlalala.backend.domain.model;
+
+import com.bestlalala.backend.RegionEntity;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
+@Getter
+@Setter
 public class Region {
+
     private Integer regionId;
     private String regionName;
     private LocalDateTime creationTimestamp;
@@ -19,6 +26,4 @@ public class Region {
     public Region(RegionEntity regionEntity) {
         this(regionEntity.getRegionId(), regionEntity.getRegionName(), regionEntity.getCreationTimestamp());
     }
-
-    // Getters and Setters
 }
