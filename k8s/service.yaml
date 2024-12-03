@@ -8,5 +8,5 @@ spec:
     app: backend-app
   ports:
     - protocol: TCP
-      port: 8080
-      targetPort: 8080
+      port: 80        # 외부에서 접근할 포트
+      targetPort: 8080 # 실제 컨테이너가 사용하는 포트
