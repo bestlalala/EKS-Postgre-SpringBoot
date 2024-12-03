@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: backend-app
+spec:
+  containers:
+    - name: backend-container
+      image: ${ECR_URI}
+      ports:
+        - containerPort: 8080
+      env:
+        - name: ECR_URI
+          valueFrom:
+            secretKeyRef:
+              name: db-config
+              key: ECR_URI
