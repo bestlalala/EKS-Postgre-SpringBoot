@@ -6,7 +6,7 @@ build/
 !**/src/test/**/build/
 
 # Environmental Variables
-!/.env
+.env
 
 ### STS ###
 .apt_generated
