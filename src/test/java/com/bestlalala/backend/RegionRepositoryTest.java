@@ -5,9 +5,7 @@ import com.ninja_squad.dbsetup.destination.DataSourceDestination;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Import;
 
 import javax.sql.DataSource;
 import java.time.LocalDateTime;
@@ -16,18 +14,19 @@ import static com.ninja_squad.dbsetup.Operations.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-@Import(DataSourceTestConfig.class)  // DataSource 설정을 가져오기
 public class RegionRepositoryTest {
 
     @Autowired
     private RegionRepository regionRepository;
 
     @Autowired
-    @Qualifier("dataSource")
-    private DataSource dataSource;
+    private DataSource dataSource;  // DataSource 주입
+
+    private DbSetup dbSetup;
 
     @BeforeEach
     public void prepareDatabase() {
+        // DbSetup 초기화 및 설정
         var operations = sequenceOf(
                 deleteAllFrom("region"),
                 insertInto("region")
@@ -38,14 +37,13 @@ public class RegionRepositoryTest {
                         .values(4, "지역4", LocalDateTime.now())
                         .build()
         );
-        var dbSetup = new DbSetup(new DataSourceDestination(dataSource), operations);
-        dbSetup.launch();
+        dbSetup = new DbSetup(new DataSourceDestination(dataSource), operations);
+        dbSetup.launch();  // 데이터베이스 초기화
     }
 
     @Test
     public void testFindAll() {
-        prepareDatabase();
-
+        // prepareDatabase()는 @BeforeEach에서 이미 호출됨
         var result = regionRepository.findAll();
         assertThat(result).hasSize(4);
     }

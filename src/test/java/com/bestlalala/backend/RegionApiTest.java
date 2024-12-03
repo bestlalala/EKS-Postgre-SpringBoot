@@ -1,6 +1,8 @@
 package com.bestlalala.backend;
 
 import com.bestlalala.backend.presentation.api.RegionApiController;
+import io.github.cdimascio.dotenv.Dotenv;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
